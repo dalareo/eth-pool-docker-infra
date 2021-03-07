@@ -1,90 +1,33 @@
-# Open Ethereum Pool Docker infrastructure
+# Open Ethereum Pool Docker
 
 Use the awesome [Docker CE](https://www.docker.com/community-edition) to get
-[sammy007/open-ethereum-pool](https://github.com/sammy007/open-ethereum-pool) up and running quickly.
+[dalareo/open-ethereum-pool](https://github.com/dalareo/open-ethereum-pool) up and running quickly.
 
 ## Instructions on how to run this project
 
 1. Install Docker. Please [see official instructions](https://docs.docker.com/install/).
 
-2. Install geth. Please [see official instructions](https://github.com/ethereum/go-ethereum/wiki/Building-Ethereum).
-
-3. Install [screen](https://www.digitalocean.com/community/tutorials/how-to-install-and-use-screen-on-an-ubuntu-cloud-server) and [git](https://git-scm.com/book/en/v2/Getting-Started-Installing-Git).
-
-4. Clone this repository to local drive:
+2. Clone this repository to local drive:
 
 ```
-git clone https://github.com/valera-rozuvan/eth-pool-docker-infra.git
+git clone https://github.com/dalareo/eth-pool-docker-infra.git
 ```
 
-5. Launch a node on the Ethereum mainnet network:
-
-```
-cd eth-pool-docker-infra/geth
-./run-geth.sh
-```
-
-6. Wait for the node to fully synchronize. To check run:
-
-```
-./attach-to-geth.sh
-```
-
-and then execute the JavaScript command `eth.blockNumber`. If you see a number close
-to the current Ethereum block number (see [Etherscan](https://etherscan.io/) to find out the current number), then your node is synced.
-
-7. Launch Redis container:
-
-```
-cd eth-pool-docker-infra/redis
-./run-redis.sh
-```
-
-8. Launch Pool container:
-
-```
-cd eth-pool-docker-infra/pool
-./build-eth-pool-image.sh
-./run-eth-pool.sh
-```
-
-9. Build Pool UI web application. Locally clone the [Open Ethereum Pool](https://github.com/sammy007/open-ethereum-pool) project, and follow the instructions
-to build the UI found in the [README](https://github.com/sammy007/open-ethereum-pool/blob/master/README.md) file.
+3. Build Pool UI web application. Locally clone the [Open Ethereum Pool](https://github.com/dalareo/open-ethereum-pool-ui) project, and follow the instructions
+to build the UI found in the [README](https://github.com/dalareo/open-ethereum-pool-ui/blob/master/README.md) file.
 
 10. Transfer build UI app `dist` folder to server:
 
 ```
-rsync -avz -e 'ssh' ./dist root@94.247.132.203:/root/dev/eth-pool-docker-infra/pool-ui
+rsync -avz -e 'ssh' ./dist root@<your_IP>:/root/dev/eth-pool-docker-infra/pool-ui
 ```
 
 NOTE: Please modify the IP and paths according to your setup!
 
-11. Launch Pool UI container:
+5. Run:
 
 ```
-cd eth-pool-docker-infra/pool-ui
-./build-pool-ui-image.sh
-./run-pool-ui.sh
-```
-
-12. Launch Pool Payouts module:
-
-```
-cd eth-pool-docker-infra/pool-payouts
-./build-eth-pool-payouts-image.sh
-./run-eth-pool-payouts.sh
-```
-
-13. Additionally, you can run [redis-commander](https://github.com/joeferner/redis-commander) to inspect the
-state of the Redis database. First install [Node.js](https://nodejs.org/), and then install `redis-commander`.
-When done, you can use the shell scripts in the folder `eth-pool-docker-infra/redis-cmd`:
-
-```
-# to start:
-./run-redis-cmd.sh
-
-# to stop:
-./stop-redis-cmd.sh
+docker-compose up
 ```
 
 ## FAQ
@@ -144,8 +87,7 @@ geth {{usual parameters}} --networkid 847283914
 
 5. How to launch a second `geth` node, and connect to your private network:
 
-Create a copy of the folder `eth-pool-docker-infra/geth` (without the `data` folder, if it's located there).
-Initialize the blockchain, and then launch `geth` with the same command you used to launch the first private node,
+Launch `geth` with the same command you used to launch the first private node,
 but use different parameters for `port` and `rpcport`:
 
 ```

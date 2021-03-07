@@ -63,13 +63,13 @@
 	"upstream": [
 		{
 			"name": "main",
-			"url": "http://127.0.0.1:13270",
+			"url": "http://geth:8545",
 			"timeout": "10s"
 		}
 	],
 
 	"redis": {
-		"endpoint": "127.0.0.1:6379",
+		"endpoint": "redis:6379",
 		"poolSize": 10,
 		"database": 0,
 		"password": ""

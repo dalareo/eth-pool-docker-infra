@@ -1,8 +1,8 @@
-FROM golang:1.10.0
+FROM golang:1.13.0
 
 WORKDIR /go/src/app
 RUN git config --global http.https://gopkg.in.followRedirects true
-RUN git clone https://github.com/sammy007/open-ethereum-pool.git
+RUN git clone https://github.com/dalareo/open-ethereum-pool.git
 
 WORKDIR /go/src/app/open-ethereum-pool
 RUN make

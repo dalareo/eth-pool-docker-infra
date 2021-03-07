@@ -1,0 +1,37 @@
+version: "3.3"
+services:
+
+  redis:
+    image: redis:alpine
+    ports:
+      - "6379:6379"
+
+  pool:
+    build:
+      context: ./pool
+  # image: pool:XX
+    depends_on:
+      - geth
+      - redis
+    ports:
+      - "8080:8080"
+      
+  pool-ui:
+    build:
+      context: ./pool-ui
+    depends_on:
+      - pool
+    ports:
+      - "80:80"
+
+  geth:
+    image: ethereum/client-go:stable
+    ports:
+      - "30303:30303"
+      - "8545:8545"
+    volumes:
+      - eth-data:/root/.ethereum
+    command: --datadir=/root/.ethereum --http --http.addr "0.0.0.0" --cache=1024 --syncmode "light"
+
+volumes:
+  eth-data:
