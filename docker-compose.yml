@@ -16,6 +16,15 @@ services:
     ports:
       - "8080:8080"
       
+  pool-payouts:
+    build:
+      context: ./pool-payouts
+    depends_on:
+      - geth
+      - redis
+    ports:
+      - "8081:8081"
+
   pool-ui:
     build:
       context: ./pool-ui

@@ -63,13 +63,13 @@
 	"upstream": [
 		{
 			"name": "main",
-			"url": "http://127.0.0.1:13270",
+			"url": "http://geth:8545",
 			"timeout": "10s"
 		}
 	],
 
 	"redis": {
-		"endpoint": "127.0.0.1:6379",
+		"endpoint": "redis:6379",
 		"poolSize": 10,
 		"database": 0,
 		"password": ""
@@ -84,7 +84,7 @@
 		"immatureDepth": 20,
 		"keepTxFees": false,
 		"interval": "3m",
-		"daemon": "http://127.0.0.1:13270",
+		"daemon": "http://geth:8545",
 		"timeout": "10s"
 	},
 
@@ -92,7 +92,7 @@
 		"enabled": true,
 		"requirePeers": 1,
 		"interval": "5m",
-		"daemon": "http://127.0.0.1:13270",
+		"daemon": "http://geth:8545",
 		"timeout": "10s",
 		"address": "0xf5d6ecb770db5a3a9de21e2adc531befa6f2c551",
 		"gas": "21000",
