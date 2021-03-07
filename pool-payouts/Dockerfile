@@ -1,4 +1,4 @@
-FROM golang:1.10.0
+FROM golang:1.13.0
 
 WORKDIR /go/src/app
 RUN git config --global http.https://gopkg.in.followRedirects true
