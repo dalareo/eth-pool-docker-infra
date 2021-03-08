@@ -63,7 +63,7 @@
 	"upstream": [
 		{
 			"name": "main",
-			"url": "http://geth:8545",
+			"url": "http://ethereum:8545",
 			"timeout": "10s"
 		}
 	],
@@ -78,13 +78,13 @@
 	"unlocker": {
 		"enabled": true,
 		"poolFee": 1.0,
-		"poolFeeAddress": "0xf5d6ecb770db5a3a9de21e2adc531befa6f2c551",
+		"poolFeeAddress": "0x000F990627B17ED7D93597A355af8E4fCC3b9519",
 		"donate": true,
 		"depth": 32,
 		"immatureDepth": 20,
 		"keepTxFees": false,
 		"interval": "3m",
-		"daemon": "http://geth:8545",
+		"daemon": "http://ethereum:8545",
 		"timeout": "10s"
 	},
 
@@ -92,9 +92,9 @@
 		"enabled": true,
 		"requirePeers": 1,
 		"interval": "5m",
-		"daemon": "http://geth:8545",
+		"daemon": "http://ethereum:8545",
 		"timeout": "10s",
-		"address": "0xf5d6ecb770db5a3a9de21e2adc531befa6f2c551",
+		"address": "0x000F990627B17ED7D93597A355af8E4fCC3b9519",
 		"gas": "21000",
 		"gasPrice": "50000000000",
 		"autoGas": true,

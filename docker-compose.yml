@@ -9,18 +9,23 @@ services:
   pool:
     build:
       context: ./pool
-  # image: pool:XX
+    volumes:
+      - ./pool/config.json:/go/src/app/open-ethereum-pool/config.json
     depends_on:
-      - geth
+      - ethereum
       - redis
     ports:
       - "8080:8080"
+      - "8888:8888"
+      - "8008:8008"
       
   pool-payouts:
     build:
       context: ./pool-payouts
+    volumes:
+      - ./pool-payouts/config.json:/go/src/app/open-ethereum-pool/config.json
     depends_on:
-      - geth
+      - ethereum
       - redis
     ports:
       - "8081:8081"
@@ -33,14 +38,19 @@ services:
     ports:
       - "80:80"
 
-  geth:
+  ethereum:
     image: ethereum/client-go:stable
+    #image: openethereum/openethereum:v3.0.0
     ports:
-      - "30303:30303"
       - "8545:8545"
+      - "30303:30303"
     volumes:
-      - eth-data:/root/.ethereum
-    command: --datadir=/root/.ethereum --http --http.addr "0.0.0.0" --cache=1024 --syncmode "light"
+      - geth-data:/root/.ethereum
+      #- parity-data:/home/openethereum/.local/share/openethereum/
+    command: --datadir=/root/.ethereum --http --http.addr "0.0.0.0" --mine --miner.etherbase 0x000F990627B17ED7D93597A355af8E4fCC3b9519
+    #command: --author 000F990627B17ED7D93597A355af8E4fCC3b9519 --jsonrpc-hosts=0.0.0.0 --jsonrpc-interface=0.0.0.0
+
 
 volumes:
-  eth-data:
+  geth-data:
+  #parity-data:
