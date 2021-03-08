@@ -50,7 +50,6 @@ services:
     command: --datadir=/root/.ethereum --http --http.addr "0.0.0.0" --mine --miner.etherbase 0x000F990627B17ED7D93597A355af8E4fCC3b9519
     #command: --author 000F990627B17ED7D93597A355af8E4fCC3b9519 --jsonrpc-hosts=0.0.0.0 --jsonrpc-interface=0.0.0.0
 
-
 volumes:
   geth-data:
   #parity-data:
